@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
+  const [timer, setTimer] = useState(100);
+  useEffect (() => {
+    if(timer !== 0) {
+      const interval = setInterval(() => {
+        setTimer(timer-1);
+      },1000);
+      return () => clearInterval(interval);
+    }
+    document.title = timer;
+  },)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 style={{textAlign:"center", margin:"90px", fontSize:"40px", fontFamily:"cursive"}}>COUNTDOWN COUNTER </h1>
+     <div style={{height:"250px",width:"250px",backgroundColor:"rgb(252, 179, 44)",borderRadius:"50%",color:"rgb(45, 45, 45)",fontSize:"85px",margin:"70px auto",lineHeight:"250px", textAlign: "center"}}>{timer}</div>
     </div>
   );
 }
